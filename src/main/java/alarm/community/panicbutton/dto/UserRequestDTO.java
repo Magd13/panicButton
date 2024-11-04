@@ -1,38 +1,30 @@
-package alarm.community.panicbutton.model;
-import lombok.Data;
+package alarm.community.panicbutton.dto;
 
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.validation.constraints.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 @Data
-@Entity
-@Table(name="users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank(message="El nombre no puede estar vacio")
+public class UserRequestDTO {
+    
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
-    @NotBlank(message="El apellido no puede estar vacio")
+    @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
 
-    @NotBlank(message = "El email no puede estar vacio")
-    @Email(message = "El amail debe estar en un formato valido")
-    @Column(unique= true)
+    @NotBlank(message = "El email es obligatorio")
+    @Email(message = "El email debe ser valido")
     private String email;
 
+    @NotBlank(message = "El telefono es obligario")
     @Pattern(regexp = "\\d{10}$", message = "El número de télefono debe contener 10 dígitos")
     private String telefono;
 
@@ -46,3 +38,4 @@ public class User {
     @FutureOrPresent
     private LocalDate fecha_registro;
 }
+
