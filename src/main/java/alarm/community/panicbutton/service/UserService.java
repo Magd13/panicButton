@@ -39,7 +39,7 @@ public class UserService {
     public boolean login(String cedula, String contraseña) {
         Optional<User> userOptional = userRepository.findByCedula(cedula);
         if (userOptional.isPresent()) {
-            User user = userOptional.get();
+            //User user = userOptional.get();
             return true;
         }
         return false;
