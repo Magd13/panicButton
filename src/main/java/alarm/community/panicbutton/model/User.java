@@ -27,11 +27,17 @@ public class User {
 
     @NotBlank(message="El apellido no puede estar vacio")
     private String apellido;
+    
+    @NotBlank(message="El numero de cedula no puede estar ")
+    @Pattern(regexp = "^[0-9]{10}$", message = "El número de cedula debe contener 10 digitos")
+    @Column(unique= true )
+    private String cedula;
 
     @NotBlank(message = "El email no puede estar vacio")
     @Email(message = "El amail debe estar en un formato valido")
-    @Column(unique= true)
+    @Column(unique= true )
     private String email;
+
 
     @Pattern(regexp = "\\d{10}$", message = "El número de télefono debe contener 10 dígitos")
     private String telefono;

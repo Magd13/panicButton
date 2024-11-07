@@ -20,6 +20,10 @@ public class UserRequestDTO {
     @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
 
+    @NotBlank(message = "El numero de cédula no puede estar vacio")
+    @Pattern(regexp = "^[0-9]{10}$", message = "El número de cedula debe contener 10 digitos")
+    private String cedula;
+
     @NotBlank(message = "El email es obligatorio")
     @Email(message = "El email debe ser valido")
     private String email;
