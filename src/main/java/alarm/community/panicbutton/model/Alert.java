@@ -2,6 +2,8 @@ package alarm.community.panicbutton.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat; 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +37,7 @@ public class Alert {
     private String tipo_alert;
 
     private String mensaje; 
+    
     @NotNull(message = "La latitud no debe ser nula")
     @Min(value = -90, message = "La latitud mínima es -90")
     @Max(value = 90, message = "La latitud máxima es 90")
@@ -45,6 +48,7 @@ public class Alert {
     @Max(value = 180, message = "La longitud máxima es 180")
     private Double longitud;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     @PastOrPresent(message = "La fecha de alerta debe ser actual o pasada")
     private LocalDateTime fecha_alerta;
 }
