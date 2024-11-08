@@ -30,7 +30,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody UserRequestDTO userDTO) {
+    public ResponseEntity<User> registerUser(@Valid @RequestBody UserRequestDTO userDTO) {
         if (userDTO.getFecha_registro() == null) {
         userDTO.setFecha_registro(LocalDate.now()); 
         }

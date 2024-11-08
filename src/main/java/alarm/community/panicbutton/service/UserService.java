@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import alarm.community.panicbutton.utils.PasswordEncoderUtil;
 import alarm.community.panicbutton.dto.UserRequestDTO;
 import alarm.community.panicbutton.model.User;
 import alarm.community.panicbutton.repository.UserRepository;
@@ -22,7 +23,7 @@ public class UserService {
         user.setCedula(userDTO.getCedula());
         user.setEmail(userDTO.getEmail());
         user.setTelefono(userDTO.getTelefono());
-        user.setContraseña(userDTO.getContraseña());
+        user.setContraseña(PasswordEncoderUtil.encodePassword(userDTO.getContraseña()));
         user.setFecha_registro(userDTO.getFecha_registro());
 
         return userRepository.save(user);
@@ -39,8 +40,8 @@ public class UserService {
     public boolean login(String cedula, String contraseña) {
         Optional<User> userOptional = userRepository.findByCedula(cedula);
         if (userOptional.isPresent()) {
-            //User user = userOptional.get();
-            return true;
+            User user = userOptional.get();
+            return PasswordEncoderUtil.matchesPassword(contraseña, user.getContraseña());
         }
         return false;
     }
@@ -53,7 +54,7 @@ public class UserService {
             user.setApellido(userDTO.getApellido());
             user.setEmail(userDTO.getEmail());
             user.setTelefono(userDTO.getTelefono());
-            user.setContraseña(userDTO.getContraseña());
+            user.setContraseña(PasswordEncoderUtil.encodePassword(userDTO.getContraseña()));
             
             user = userRepository.save(user);
             return Optional.of(user);

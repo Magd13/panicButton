@@ -43,8 +43,7 @@ public class User {
     private String telefono;
 
     @NotBlank(message = "La contraseña no puede estar vacia")
-    @Size(min = 8, max = 20, message = "La contraseña debe tener al menos 8 y máximo 20 caracteres")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$",
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$",
              message = "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número")
     private String contraseña;
 

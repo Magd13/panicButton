@@ -2,7 +2,6 @@ package alarm.community.panicbutton.service;
 
 import alarm.community.panicbutton.dto.AlertRequestDTO;
 import alarm.community.panicbutton.model.Alert;
-import alarm.community.panicbutton.model.User;
 import alarm.community.panicbutton.repository.AlertRepository;
 import alarm.community.panicbutton.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
