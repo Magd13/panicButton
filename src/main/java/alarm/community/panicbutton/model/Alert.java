@@ -47,7 +47,7 @@ public class Alert {
     @Max(value = 180, message = "La longitud máxima es 180")
     private Double longitud;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @PastOrPresent(message = "La fecha de alerta debe ser actual o pasada")
     private LocalDateTime fecha_alerta;
 }
